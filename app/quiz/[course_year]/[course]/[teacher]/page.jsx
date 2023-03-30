@@ -1,7 +1,7 @@
 "use client"
 import {useEffect, useState} from "react";
 import {usePathname} from "next/navigation";
-import {ExclamationCircleIcon} from "@heroicons/react/24/outline";
+import {CloudArrowDownIcon, ExclamationCircleIcon} from "@heroicons/react/24/outline";
 
 const people = [
     {name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member'},
@@ -89,9 +89,9 @@ export default function Example({params: {course_year, course, teacher}}) {
                                 </th>
                                 <th
                                     scope="col"
-                                    className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-3 pr-4 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
+                                    className="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-center text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell"
                                 >
-                                    <span className="sr-only">操作</span>
+                                    操作
                                 </th>
                             </tr>
                             </thead>
@@ -136,7 +136,10 @@ export default function Example({params: {course_year, course, teacher}}) {
                                             'relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-8 lg:pr-8'
                                         )}
                                     >
-                                        <a href="#" className="text-white border p-2 rounded-xl shadow-md bg-red-600 hover:bg-red-700 inline-flex gap-1">
+                                        <a href="#" className="text-white border p-2 rounded-xl shadow-md bg-indigo-600 hover:bg-indigo-700 inline-flex gap-1">
+                                            <CloudArrowDownIcon className={"h-5 w-5"}/> 下載
+                                        </a>
+                                        <a href="#" className="ml-1 text-white border p-2 rounded-xl shadow-md bg-red-600 hover:bg-red-700 inline-flex gap-1">
                                             <ExclamationCircleIcon className={"h-5 w-5"}/> 舉報
                                         </a>
                                     </td>

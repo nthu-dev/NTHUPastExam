@@ -1,5 +1,5 @@
 "use client"
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useRef, useState} from 'react'
 import {Dialog, Menu, Transition} from '@headlessui/react'
 import {Bars3CenterLeftIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {
@@ -8,6 +8,8 @@ import {
 } from '@heroicons/react/20/solid'
 import DesktopSideBar from "./SideBarList/Desktop";
 import MobileSideBar from "./SideBarList/Mobile";
+import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
+import {usePathname} from "next/navigation";
 
 const teams = [
     {name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500'},
@@ -21,9 +23,52 @@ function classNames(...classes) {
 
 export default function Example({children}) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [user, setUser] = useState(null)
+    const isFirst = useRef(true);
+    const pathname = usePathname()
+
+    useEffect(() => {
+        (async () => {
+            if (!isFirst.current) return
+            isFirst.current = false
+            if (localStorage.getItem('token') === null) return setUser(null)
+            try {
+                const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/user', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                }).then(r => r.json())
+                setUser(data)
+            } catch (e) {
+                console.log(e)
+                setUser(null)
+                localStorage.removeItem('token')
+            }
+        })()
+    })
+
+    const login = async (jwt) => {
+        try {
+            const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/google', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({token: jwt})
+            }).then(r => r.json())
+            localStorage.setItem('token', data.token)
+            setUser(data.user)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 
     return (
-        <>
+        <GoogleOAuthProvider clientId="378522369727-b0q3e2r2vpdrc53luoc7pu68f8i0vq59.apps.googleusercontent.com">
             <div className="min-h-full">
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
@@ -129,6 +174,20 @@ export default function Example({children}) {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="mt-5 flex h-0 flex-1 flex-col overflow-y-auto pt-1">
                         {/* User account dropdown */}
+                        {!localStorage.getItem('token') && <div className={"w-full flex justify-center"}>
+                            <GoogleLogin
+                                onSuccess={credentialResponse => {
+                                    login(credentialResponse.credential);
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
+                                hosted_domain={"gapp.nthu.edu.tw"}
+                                auto_select
+                                useOneTap
+                            />
+                        </div>}
+
                         <Menu as="div" className="relative inline-block px-3 text-left">
                             <div>
                                 <Menu.Button
@@ -474,6 +533,6 @@ export default function Example({children}) {
                     </main>
                 </div>
             </div>
-        </>
+        </GoogleOAuthProvider>
     )
 }

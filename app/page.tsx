@@ -9,6 +9,7 @@ import {
     LockClosedIcon,
     ServerIcon,
 } from '@heroicons/react/20/solid'
+import Link from "next/link";
 
 const navigation = [
     { name: 'Product', href: '#' },
@@ -250,9 +251,9 @@ export default function Example() {
                         ))}
                     </div>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                        <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                            Log in <span aria-hidden="true">&rarr;</span>
-                        </a>
+                        <Link href="/quiz" className="text-sm font-semibold leading-6 text-gray-900">
+                            進入系統 <span aria-hidden="true">&rarr;</span>
+                        </Link>
                     </div>
                 </nav>
                 <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -332,7 +333,7 @@ export default function Example() {
                     </svg>
                     <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
                         <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-                            <div className="flex">
+                            {/*<div className="flex">
                                 <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                                     <span className="font-semibold text-indigo-600">We’re hiring</span>
                                     <span className="h-4 w-px bg-gray-900/10" aria-hidden="true" />
@@ -342,24 +343,23 @@ export default function Example() {
                                         <ChevronRightIcon className="-mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                                     </a>
                                 </div>
-                            </div>
+                            </div>*/}
                             <h1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                A better way to ship your projects
+                                尋找考古題的最佳方法
                             </h1>
                             <p className="mt-6 text-lg leading-8 text-gray-600">
-                                Esse id magna consectetur fugiat non dolor in ad laboris magna laborum ea consequat. Nisi irure aliquip
-                                nisi adipisicing veniam voluptate id. In veniam incididunt ex veniam adipisicing sit.
+                                清大考古題統整平台，整理歷屆所有考古
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
-                                <a
-                                    href="#"
+                                <Link
+                                    href="/quiz"
                                     className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    Get started
-                                </a>
-                                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                                    Learn more <span aria-hidden="true">→</span>
-                                </a>
+                                    立即體驗
+                                </Link>
+                                <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
+                                    關於我們 <span aria-hidden="true">→</span>
+                                </Link>
                             </div>
                         </div>
                         <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">

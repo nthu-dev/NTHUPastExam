@@ -31,7 +31,7 @@ export default function Example({children}) {
         (async () => {
             if (!isFirst.current) return
             isFirst.current = false
-            if (localStorage.getItem('token') === null) return setUser(null)
+            if (window?.localStorage && localStorage.getItem('token') === null) return setUser(null)
             try {
                 const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/user', {
                     headers: {
@@ -174,7 +174,7 @@ export default function Example({children}) {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="mt-5 flex h-0 flex-1 flex-col overflow-y-auto pt-1">
                         {/* User account dropdown */}
-                        {!localStorage.getItem('token') && <div className={"w-full flex justify-center"}>
+                        {typeof localStorage !== "undefined" && !localStorage.getItem('token') && <div className={"w-full flex justify-center"}>
                             <GoogleLogin
                                 onSuccess={credentialResponse => {
                                     login(credentialResponse.credential);

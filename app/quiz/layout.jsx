@@ -10,6 +10,8 @@ import DesktopSideBar from "./SideBarList/Desktop";
 import MobileSideBar from "./SideBarList/Mobile";
 import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
 import {usePathname} from "next/navigation";
+import Link from "next/link";
+import SideBarTags from "./SideBarTags/SideBarTags";
 
 const teams = [
     {name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500'},
@@ -39,7 +41,10 @@ export default function Example({children}) {
                         'Accept': 'application/json',
                         'Authorization': 'Bearer ' + localStorage.getItem('token')
                     }
-                }).then(r => r.json())
+                }).then(r => {
+                    if (!r.ok) throw new Error('Not authorized')
+                    return r.json()
+                })
                 setUser(data)
             } catch (e) {
                 console.log(e)
@@ -119,8 +124,8 @@ export default function Example({children}) {
                                     <div className="flex flex-shrink-0 items-center px-4">
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=purple&shade=500"
-                                            alt="Your Company"
+                                            src="/logo.jpg"
+                                            alt="My Logo"
                                         />
                                     </div>
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
@@ -202,8 +207,8 @@ export default function Example({children}) {
                                           />
                                           <span className="flex min-w-0 flex-1 flex-col">
                                             <span
-                                                className="truncate text-sm font-medium text-gray-900">Jessy Schwarz</span>
-                                            <span className="truncate text-sm text-gray-500">@jessyschwarz</span>
+                                                className="truncate text-sm font-medium text-gray-900">{user?.name}</span>
+                                            <span className="truncate text-sm text-gray-500">@username</span>
                                           </span>
                                         </span>
                                         <ChevronUpDownIcon
@@ -234,7 +239,7 @@ export default function Example({children}) {
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
-                                                        View profile
+                                                        設定
                                                     </a>
                                                 )}
                                             </Menu.Item>
@@ -247,20 +252,7 @@ export default function Example({children}) {
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
-                                                        Settings
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({active}) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                            'block px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        Notifications
+                                                        通知
                                                     </a>
                                                 )}
                                             </Menu.Item>
@@ -275,35 +267,7 @@ export default function Example({children}) {
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
-                                                        Get desktop app
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({active}) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                            'block px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        Support
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                        </div>
-                                        <div className="py-1">
-                                            <Menu.Item>
-                                                {({active}) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                            'block px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        Logout
+                                                        登出
                                                     </a>
                                                 )}
                                             </Menu.Item>
@@ -339,24 +303,7 @@ export default function Example({children}) {
                             </div>
                             <div className="mt-8">
                                 {/* Secondary navigation */}
-                                <h3 className="px-3 text-sm font-medium text-gray-500" id="desktop-teams-headline">
-                                    Tags
-                                </h3>
-                                <div className="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
-                                    {teams.map((team) => (
-                                        <a
-                                            key={team.name}
-                                            href={team.href}
-                                            className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                                        >
-                      <span
-                          className={classNames(team.bgColorClass, 'mr-4 h-2.5 w-2.5 rounded-full')}
-                          aria-hidden="true"
-                      />
-                                            <span className="truncate">{team.name}</span>
-                                        </a>
-                                    ))}
-                                </div>
+                                <SideBarTags/>
                             </div>
                         </nav>
                     </div>
@@ -524,12 +471,13 @@ export default function Example({children}) {
                                 >
                                     Share
                                 </button>
-                                <button
+                                <Link
+                                    href={'/quiz/new'}
                                     type="button"
                                     className="order-0 inline-flex items-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 sm:order-1 sm:ml-3"
                                 >
-                                    Create
-                                </button>
+                                    建立考古
+                                </Link>
                             </div>
                         </div>
                         {children}

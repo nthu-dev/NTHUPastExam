@@ -13,15 +13,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example({params: {course_year, course, teacher}}) {
+export default function Example({params: {tag}}) {
     const [quiz, setQuiz] = useState([])
     const pathname = usePathname()
-
-    const qs = new URLSearchParams({
-        course: decodeURIComponent(course),
-        teacher: decodeURIComponent(teacher),
-        course_year
-    });
 
     const download = async (id) => {
         try {
@@ -45,7 +39,7 @@ export default function Example({params: {course_year, course, teacher}}) {
     useEffect(() => {
         (async () => {
             try {
-                const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/quiz?' + qs.toString(), {
+                const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/quiz', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -64,7 +58,7 @@ export default function Example({params: {course_year, course, teacher}}) {
                 <div className="sm:flex-auto">
                     <h1 className="text-base font-semibold leading-6 text-gray-900">考古題</h1>
                     <p className="mt-2 text-sm text-gray-700">
-                        {teacher}'s {decodeURIComponent(course)} 考古題列表
+                        {decodeURIComponent(tag)} 考古題列表
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -122,7 +116,7 @@ export default function Example({params: {course_year, course, teacher}}) {
                             </tr>
                             </thead>
                             <tbody>
-                            {quiz.length > 0 && quiz.map((q, qIdx) => (
+                            {quiz.length > 0 && quiz.filter(r => r.tags.includes(decodeURIComponent(tag))).map((q, qIdx) => (
                                 <tr key={q.id}>
                                     <td
                                         className={classNames(

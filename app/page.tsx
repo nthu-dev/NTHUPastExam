@@ -1,7 +1,7 @@
 "use client"
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {
     ArrowPathIcon,
     ChevronRightIcon,
@@ -12,10 +12,10 @@ import {
 import Link from "next/link";
 
 const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
+    {name: 'Product', href: '#'},
+    {name: 'Features', href: '#'},
+    {name: 'Marketplace', href: '#'},
+    {name: 'Company', href: '#'},
 ]
 const primaryFeatures = [
     {
@@ -123,28 +123,28 @@ const testimonials = [
 ]
 const footerNavigation = {
     solutions: [
-        { name: 'Marketing', href: '#' },
-        { name: 'Analytics', href: '#' },
-        { name: 'Commerce', href: '#' },
-        { name: 'Insights', href: '#' },
+        {name: 'Marketing', href: '#'},
+        {name: 'Analytics', href: '#'},
+        {name: 'Commerce', href: '#'},
+        {name: 'Insights', href: '#'},
     ],
     support: [
-        { name: 'Pricing', href: '#' },
-        { name: 'Documentation', href: '#' },
-        { name: 'Guides', href: '#' },
-        { name: 'API Status', href: '#' },
+        {name: 'Pricing', href: '#'},
+        {name: 'Documentation', href: '#'},
+        {name: 'Guides', href: '#'},
+        {name: 'API Status', href: '#'},
     ],
     company: [
-        { name: 'About', href: '#' },
-        { name: 'Blog', href: '#' },
-        { name: 'Jobs', href: '#' },
-        { name: 'Press', href: '#' },
-        { name: 'Partners', href: '#' },
+        {name: 'About', href: '#'},
+        {name: 'Blog', href: '#'},
+        {name: 'Jobs', href: '#'},
+        {name: 'Press', href: '#'},
+        {name: 'Partners', href: '#'},
     ],
     legal: [
-        { name: 'Claim', href: '#' },
-        { name: 'Privacy', href: '#' },
-        { name: 'Terms', href: '#' },
+        {name: 'Claim', href: '#'},
+        {name: 'Privacy', href: '#'},
+        {name: 'Terms', href: '#'},
     ],
     social: [
         {
@@ -178,7 +178,8 @@ const footerNavigation = {
             href: '#',
             icon: (props: any) => (
                 <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    <path
+                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
                 </svg>
             ),
         },
@@ -240,12 +241,13 @@ export default function Example() {
                             onClick={() => setMobileMenuOpen(true)}
                         >
                             <span className="sr-only">Open main menu</span>
-                            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                            <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
                         </button>
                     </div>
                     <div className="hidden lg:flex lg:gap-x-12">
                         {navigation.map((item) => (
-                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+                            <a key={item.name} href={item.href}
+                               className="text-sm font-semibold leading-6 text-gray-900">
                                 {item.name}
                             </a>
                         ))}
@@ -257,14 +259,15 @@ export default function Example() {
                     </div>
                 </nav>
                 <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                    <div className="fixed inset-0 z-50" />
-                    <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div className="fixed inset-0 z-50"/>
+                    <Dialog.Panel
+                        className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                         <div className="flex items-center justify-between">
                             <a href="#" className="-m-1.5 p-1.5">
                                 <span className="sr-only">Your Company</span>
                                 <img
                                     className="h-8 w-auto"
-                                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                    src="/logo.jpg"
                                     alt=""
                                 />
                             </a>
@@ -274,7 +277,7 @@ export default function Example() {
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 <span className="sr-only">Close menu</span>
-                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
                             </button>
                         </div>
                         <div className="mt-6 flow-root">
@@ -320,7 +323,7 @@ export default function Example() {
                                 y={-1}
                                 patternUnits="userSpaceOnUse"
                             >
-                                <path d="M100 200V.5M.5 .5H200" fill="none" />
+                                <path d="M100 200V.5M.5 .5H200" fill="none"/>
                             </pattern>
                         </defs>
                         <svg x="50%" y={-1} className="overflow-visible fill-gray-50">
@@ -329,9 +332,11 @@ export default function Example() {
                                 strokeWidth={0}
                             />
                         </svg>
-                        <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
+                        <rect width="100%" height="100%" strokeWidth={0}
+                              fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"/>
                     </svg>
-                    <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+                    <div
+                        className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
                         <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
                             {/*<div className="flex">
                                 <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -363,11 +368,12 @@ export default function Example() {
                             </div>
                         </div>
                         <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-                            <svg viewBox="0 0 366 729" role="img" className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
+                            <svg viewBox="0 0 366 729" role="img"
+                                 className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
                                 <title>App screenshot</title>
                                 <defs>
                                     <clipPath id="2ade4387-9c63-4fc4-b754-10e687a0d332">
-                                        <rect width={316} height={684} rx={36} />
+                                        <rect width={316} height={684} rx={36}/>
                                     </clipPath>
                                 </defs>
                                 <path
@@ -384,7 +390,8 @@ export default function Example() {
                                     transform="translate(24 24)"
                                     clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
                                 >
-                                    <img src="https://tailwindui.com/img/component-images/mobile-app-screenshot.png" alt="" />
+                                    <img src="https://tailwindui.com/img/component-images/mobile-app-screenshot.png"
+                                         alt=""/>
                                 </foreignObject>
                             </svg>
                         </div>
@@ -393,7 +400,8 @@ export default function Example() {
 
                 {/* Logo cloud */}
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    <div
+                        className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                         <img
                             className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
                             src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-400.svg"
@@ -434,16 +442,19 @@ export default function Example() {
 
                 {/* Feature section */}
                 <div className="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
-                    <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24">
-                        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
+                    <div
+                        className="relative isolate overflow-hidden bg-gray-900 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24">
+                        <div
+                            className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0">
                             <div className="lg:row-start-2 lg:max-w-md">
                                 <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                                     Boost your productivity.
-                                    <br />
+                                    <br/>
                                     Start using our app today.
                                 </h2>
                                 <p className="mt-6 text-lg leading-8 text-gray-300">
-                                    Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel
+                                    Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing
+                                    sagittis vel
                                     nulla. Ac euismod vel sit maecenas.
                                 </p>
                             </div>
@@ -454,14 +465,17 @@ export default function Example() {
                                 width={2432}
                                 height={1442}
                             />
-                            <div className="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10">
+                            <div
+                                className="max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10">
                                 <dl className="max-w-xl space-y-8 text-base leading-7 text-gray-300 lg:max-w-none">
                                     {primaryFeatures.map((feature) => (
                                         <div key={feature.name} className="relative">
                                             <dt className="ml-9 inline-block font-semibold text-white">
-                                                <feature.icon className="absolute left-1 top-1 h-5 w-5 text-indigo-500" aria-hidden="true" />
+                                                <feature.icon className="absolute left-1 top-1 h-5 w-5 text-indigo-500"
+                                                              aria-hidden="true"/>
                                                 {feature.name}
-                                            </dt>{' '}
+                                            </dt>
+                                            {' '}
                                             <dd className="inline">{feature.description}</dd>
                                         </div>
                                     ))}
@@ -491,7 +505,8 @@ export default function Example() {
                             Everything you need to deploy your app
                         </p>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum
+                            Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a
+                            elementum
                             pulvinar et feugiat blandit at. In mi viverra elit nunc.
                         </p>
                     </div>
@@ -500,13 +515,14 @@ export default function Example() {
                             {secondaryFeatures.map((feature) => (
                                 <div key={feature.name} className="flex flex-col">
                                     <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                                        <feature.icon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                                        <feature.icon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true"/>
                                         {feature.name}
                                     </dt>
                                     <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                                         <p className="flex-auto">{feature.description}</p>
                                         <p className="mt-6">
-                                            <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-600">
+                                            <a href={feature.href}
+                                               className="text-sm font-semibold leading-6 text-indigo-600">
                                                 Learn more <span aria-hidden="true">→</span>
                                             </a>
                                         </p>
@@ -519,12 +535,14 @@ export default function Example() {
 
                 {/* Newsletter section */}
                 <div className="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
-                    <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
+                    <div
+                        className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
                         <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             Get notified when we’re launching.
                         </h2>
                         <p className="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">
-                            Reprehenderit ad esse et non officia in nulla. Id proident tempor incididunt nostrud nulla et culpa.
+                            Reprehenderit ad esse et non officia in nulla. Id proident tempor incididunt nostrud nulla
+                            et culpa.
                         </p>
                         <form className="mx-auto mt-10 flex max-w-md gap-x-4">
                             <label htmlFor="email-address" className="sr-only">
@@ -551,7 +569,8 @@ export default function Example() {
                             className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
                             aria-hidden="true"
                         >
-                            <circle cx={512} cy={512} r={512} fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
+                            <circle cx={512} cy={512} r={512} fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
+                                    fillOpacity="0.7"/>
                             <defs>
                                 <radialGradient
                                     id="759c1415-0410-454c-8f7c-9a820de03641"
@@ -561,8 +580,8 @@ export default function Example() {
                                     gradientUnits="userSpaceOnUse"
                                     gradientTransform="translate(512 512) rotate(90) scale(512)"
                                 >
-                                    <stop stopColor="#7775D6" />
-                                    <stop offset={1} stopColor="#E935C1" stopOpacity={0} />
+                                    <stop stopColor="#7775D6"/>
+                                    <stop offset={1} stopColor="#E935C1" stopOpacity={0}/>
                                 </radialGradient>
                             </defs>
                         </svg>
@@ -584,7 +603,7 @@ export default function Example() {
                                 y={0}
                                 patternUnits="userSpaceOnUse"
                             >
-                                <path d="M.5 200V.5H200" fill="none" />
+                                <path d="M.5 200V.5H200" fill="none"/>
                             </pattern>
                         </defs>
                         <svg x="50%" y={0} className="overflow-visible fill-gray-50">
@@ -593,7 +612,8 @@ export default function Example() {
                                 strokeWidth={0}
                             />
                         </svg>
-                        <rect width="100%" height="100%" strokeWidth={0} fill="url(#55d3d46d-692e-45f2-becd-d8bdc9344f45)" />
+                        <rect width="100%" height="100%" strokeWidth={0}
+                              fill="url(#55d3d46d-692e-45f2-becd-d8bdc9344f45)"/>
                     </svg>
                     <div className="relative">
                         <div
@@ -627,12 +647,16 @@ export default function Example() {
                                     We have worked with thousands of amazing people
                                 </p>
                             </div>
-                            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
-                                <figure className="col-span-2 hidden sm:block sm:rounded-2xl sm:bg-white sm:shadow-lg sm:ring-1 sm:ring-gray-900/5 xl:col-start-2 xl:row-end-1">
-                                    <blockquote className="p-12 text-xl font-semibold leading-8 tracking-tight text-gray-900">
+                            <div
+                                className="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm leading-6 text-gray-900 sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
+                                <figure
+                                    className="col-span-2 hidden sm:block sm:rounded-2xl sm:bg-white sm:shadow-lg sm:ring-1 sm:ring-gray-900/5 xl:col-start-2 xl:row-end-1">
+                                    <blockquote
+                                        className="p-12 text-xl font-semibold leading-8 tracking-tight text-gray-900">
                                         <p>{`“${featuredTestimonial.body}”`}</p>
                                     </blockquote>
-                                    <figcaption className="flex items-center gap-x-4 border-t border-gray-900/10 px-6 py-4">
+                                    <figcaption
+                                        className="flex items-center gap-x-4 border-t border-gray-900/10 px-6 py-4">
                                         <img
                                             className="h-10 w-10 flex-none rounded-full bg-gray-50"
                                             src={featuredTestimonial.author.imageUrl}
@@ -640,9 +664,11 @@ export default function Example() {
                                         />
                                         <div className="flex-auto">
                                             <div className="font-semibold">{featuredTestimonial.author.name}</div>
-                                            <div className="text-gray-600">{`@${featuredTestimonial.author.handle}`}</div>
+                                            <div
+                                                className="text-gray-600">{`@${featuredTestimonial.author.handle}`}</div>
                                         </div>
-                                        <img className="h-10 w-auto flex-none" src={featuredTestimonial.author.logoUrl} alt="" />
+                                        <img className="h-10 w-auto flex-none" src={featuredTestimonial.author.logoUrl}
+                                             alt=""/>
                                     </figcaption>
                                 </figure>
                                 {testimonials.map((columnGroup, columnGroupIdx) => (
@@ -673,8 +699,10 @@ export default function Example() {
                                                                 alt=""
                                                             />
                                                             <div>
-                                                                <div className="font-semibold">{testimonial.author.name}</div>
-                                                                <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
+                                                                <div
+                                                                    className="font-semibold">{testimonial.author.name}</div>
+                                                                <div
+                                                                    className="text-gray-600">{`@${testimonial.author.handle}`}</div>
                                                             </div>
                                                         </figcaption>
                                                     </figure>
@@ -708,7 +736,8 @@ export default function Example() {
                                     <ul role="list" className="mt-6 space-y-4">
                                         {footerNavigation.solutions.map((item) => (
                                             <li key={item.name}>
-                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                <a href={item.href}
+                                                   className="text-sm leading-6 text-gray-300 hover:text-white">
                                                     {item.name}
                                                 </a>
                                             </li>
@@ -720,7 +749,8 @@ export default function Example() {
                                     <ul role="list" className="mt-6 space-y-4">
                                         {footerNavigation.support.map((item) => (
                                             <li key={item.name}>
-                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                <a href={item.href}
+                                                   className="text-sm leading-6 text-gray-300 hover:text-white">
                                                     {item.name}
                                                 </a>
                                             </li>
@@ -734,7 +764,8 @@ export default function Example() {
                                     <ul role="list" className="mt-6 space-y-4">
                                         {footerNavigation.company.map((item) => (
                                             <li key={item.name}>
-                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                <a href={item.href}
+                                                   className="text-sm leading-6 text-gray-300 hover:text-white">
                                                     {item.name}
                                                 </a>
                                             </li>
@@ -746,7 +777,8 @@ export default function Example() {
                                     <ul role="list" className="mt-6 space-y-4">
                                         {footerNavigation.legal.map((item) => (
                                             <li key={item.name}>
-                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                <a href={item.href}
+                                                   className="text-sm leading-6 text-gray-300 hover:text-white">
                                                     {item.name}
                                                 </a>
                                             </li>
@@ -756,7 +788,8 @@ export default function Example() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+                    <div
+                        className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
                         <div>
                             <h3 className="text-sm font-semibold leading-6 text-white">Subscribe to our newsletter</h3>
                             <p className="mt-2 text-sm leading-6 text-gray-300">
@@ -791,7 +824,7 @@ export default function Example() {
                             {footerNavigation.social.map((item) => (
                                 <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
                                     <span className="sr-only">{item.name}</span>
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                                    <item.icon className="h-6 w-6" aria-hidden="true"/>
                                 </a>
                             ))}
                         </div>

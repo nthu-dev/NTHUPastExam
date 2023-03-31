@@ -10,6 +10,7 @@ import {
     ServerIcon,
 } from '@heroicons/react/20/solid'
 import Link from "next/link";
+import Image from "next/image";
 
 const navigation = [
     {name: 'Product', href: '#'},
@@ -227,9 +228,11 @@ export default function Example() {
                     <div className="flex lg:flex-1">
                         <a href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
-                            <img
-                                className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                            <Image
+                                className="h-12 w-auto rounded-xl"
+                                src="/logo.jpg"
+                                width={1280}
+                                height={1280}
                                 alt=""
                             />
                         </a>
@@ -725,8 +728,8 @@ export default function Example() {
                 <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
                     <div className="xl:grid xl:grid-cols-3 xl:gap-8">
                         <img
-                            className="h-7"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                            className="h-16"
+                            src="/logo.jpg"
                             alt="Company name"
                         />
                         <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

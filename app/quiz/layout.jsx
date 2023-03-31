@@ -12,6 +12,7 @@ import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import SideBarTags from "./SideBarTags/SideBarTags";
+import Image from "next/image";
 
 const teams = [
     {name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500'},
@@ -170,9 +171,11 @@ export default function Example({children}) {
                 <div
                     className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 lg:bg-gray-100 lg:pb-4 lg:pt-5">
                     <div className="flex flex-shrink-0 items-center px-6">
-                        <img
-                            className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=purple&shade=500"
+                        <Image
+                            className="h-16 w-auto rounded-full"
+                            src="/logo.jpg"
+                            width={1280}
+                            height={1280}
                             alt="Your Company"
                         />
                     </div>
@@ -462,7 +465,7 @@ export default function Example({children}) {
                         <div
                             className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                             <div className="min-w-0 flex-1">
-                                <h1 className="text-lg font-medium leading-6 text-gray-900 sm:truncate">考古題系統</h1>
+                                <h1 className="text-lg font-medium leading-6 text-gray-900 sm:truncate">清大考古題系統</h1>
                             </div>
                             <div className="mt-4 flex sm:ml-4 sm:mt-0">
                                 <button

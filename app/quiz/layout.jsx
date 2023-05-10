@@ -132,7 +132,7 @@ export default function Example({children}) {
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                         <nav className="px-2">
                                             <div className="space-y-1">
-                                                <MobileSideBar/>
+                                                <DesktopSideBar/>
                                             </div>
                                             <div className="mt-8">
                                                 <h3 className="px-3 text-sm font-medium text-gray-500"

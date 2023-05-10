@@ -1,18 +1,44 @@
 "use client"
 import {Bars4Icon, ClockIcon, HomeIcon} from "@heroicons/react/24/outline";
+import {useEffect, useState} from "react";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 export default function MobileSideBar() {
-    const navigation = [
-        {name: 'Home', href: '#', icon: HomeIcon, current: true},
-        {name: 'My tasks', href: '#', icon: Bars4Icon, current: false},
-        {name: 'Recent', href: '#', icon: ClockIcon, current: false},
-    ]
+    const [quiz, setQuiz] = useState([])
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/quiz', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                }).then(r => r.json())
+
+                const new_data = {}
+                // course_year has many courses, and course has many teachers make a level object `new_data`
+                data.forEach((q) => {
+                    if (!new_data[q.course_year]) new_data[q.course_year] = {}
+                    if (!new_data[q.course_year][q.course]) new_data[q.course_year][q.course] = {}
+                    if (!new_data[q.course_year][q.course][q.teacher]) new_data[q.course_year][q.course][q.teacher] = []
+                    new_data[q.course_year][q.course][q.teacher].push(q)
+                })
+                setQuiz(new_data)
+            } catch (e) {
+                console.log(e)
+            }
+        })()
+    }, [pathname])
+    const courseYear = {
+        "1": "大一",
+        "2": "大二",
+        "3": "大三"
+    }
     return (
         <>
-            {navigation.map((item) => (
+            {Object.keys(quiz).map((item) => (
                 <a
                     key={item.name}
                     href={item.href}

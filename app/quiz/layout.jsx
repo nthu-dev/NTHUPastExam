@@ -7,7 +7,6 @@ import {
     MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
 import DesktopSideBar from "./SideBarList/Desktop";
-import MobileSideBar from "./SideBarList/Mobile";
 import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
@@ -133,28 +132,6 @@ export default function Example({children}) {
                                         <nav className="px-2">
                                             <div className="space-y-1">
                                                 <DesktopSideBar/>
-                                            </div>
-                                            <div className="mt-8">
-                                                <h3 className="px-3 text-sm font-medium text-gray-500"
-                                                    id="mobile-teams-headline">
-                                                    Teams
-                                                </h3>
-                                                <div className="mt-1 space-y-1" role="group"
-                                                     aria-labelledby="mobile-teams-headline">
-                                                    {teams.map((team) => (
-                                                        <a
-                                                            key={team.name}
-                                                            href={team.href}
-                                                            className="group flex items-center rounded-md px-3 py-2 text-base font-medium leading-5 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                                                        >
-                              <span
-                                  className={classNames(team.bgColorClass, 'mr-4 h-2.5 w-2.5 rounded-full')}
-                                  aria-hidden="true"
-                              />
-                                                            <span className="truncate">{team.name}</span>
-                                                        </a>
-                                                    ))}
-                                                </div>
                                             </div>
                                         </nav>
                                     </div>

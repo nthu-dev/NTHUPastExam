@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {usePathname} from "next/navigation";
 import {CloudArrowDownIcon, ExclamationCircleIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import {ExclamationTriangleIcon} from "@heroicons/react/20/solid";
 
 const people = [
     {name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member'},
@@ -39,6 +41,52 @@ export default function Example({params: {course_year, course, teacher}}) {
             window.open(process.env.NEXT_PUBLIC_API_ENDPOINT + '/download?token=' + data.token + `&at=${localStorage.getItem('token')}`, '_blank')
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    const report = async (id) => {
+        const result = await Swal.fire({
+            title: '舉報的相關資訊',
+            input: 'text',
+            inputLabel: '舉報原因',
+            inputPlaceholder: '請輸入舉報原因',
+            showCancelButton: true,
+            confirmButtonText: '舉報',
+            cancelButtonText: '取消',
+        })
+        if (result.isConfirmed) {
+            try {
+                const data = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/quiz/' + id + '/report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                    body: JSON.stringify({
+                        reason: result.value
+                    })
+                }).then(r => {
+                    if(!r.ok) {
+                        return r.text().then(text => { throw new Error(text) })
+                    }
+                    return r
+                })
+                Swal.fire({
+                    title: '舉報成功',
+                    icon: 'success',
+                    text: '我們已經收到您的舉報，我們會盡快處理並核實',
+                })
+            } catch (e) {
+                console.log(e.message)
+                if (JSON.parse(e.message)?.error) {
+                    Swal.fire({
+                        title: '舉報失敗',
+                        icon: 'error',
+                        text: JSON.parse(e.message)?.error,
+                    })
+                }
+            }
         }
     }
 
@@ -127,9 +175,10 @@ export default function Example({params: {course_year, course, teacher}}) {
                                     <td
                                         className={classNames(
                                             qIdx !== people.length - 1 ? 'border-b border-gray-200' : '',
-                                            'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8'
+                                            'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 flex items-center'
                                         )}
                                     >
+                                        { q.report_cnt >= 1 && <span className="text-red-500 inline-flex"><ExclamationTriangleIcon className={"h-5 w-5"}/></span> }
                                         {q.course}
                                     </td>
                                     <td
@@ -179,10 +228,10 @@ export default function Example({params: {course_year, course, teacher}}) {
                                                 className="text-white border p-2 rounded-xl shadow-md bg-indigo-600 hover:bg-indigo-700 inline-flex gap-1">
                                             <CloudArrowDownIcon className={"h-5 w-5"}/> 下載
                                         </button>
-                                        <a href="#"
-                                           className="ml-1 text-white border p-2 rounded-xl shadow-md bg-red-600 hover:bg-red-700 inline-flex gap-1">
+                                        <button onClick={e => report(q.id)}
+                                                className="ml-1 text-white border p-2 rounded-xl shadow-md bg-red-600 hover:bg-red-700 inline-flex gap-1">
                                             <ExclamationCircleIcon className={"h-5 w-5"}/> 舉報
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

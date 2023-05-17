@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/20/solid'
 import DesktopSideBar from "./SideBarList/Desktop";
 import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 import SideBarTags from "./SideBarTags/SideBarTags";
 import Image from "next/image";
@@ -28,6 +28,7 @@ export default function Example({children}) {
     const [user, setUser] = useState(null)
     const isFirst = useRef(true);
     const pathname = usePathname()
+    const router = useRouter()
 
     useEffect(() => {
         (async () => {
@@ -64,8 +65,10 @@ export default function Example({children}) {
                 },
                 body: JSON.stringify({token: jwt})
             }).then(r => r.json())
+            isFirst.current = true
             localStorage.setItem('token', data.token)
             setUser(data.user)
+            router.refresh()
         } catch (e) {
             console.log(e)
         }
@@ -193,7 +196,7 @@ export default function Example({children}) {
                                           <span className="flex min-w-0 flex-1 flex-col">
                                             <span
                                                 className="truncate text-sm font-medium text-gray-900">{user?.name}</span>
-                                            <span className="truncate text-sm text-gray-500">@username</span>
+                                            <span className="truncate text-sm text-gray-500">{user?.email?.split('@')?.[0]}</span>
                                           </span>
                                         </span>
                                         <ChevronUpDownIcon

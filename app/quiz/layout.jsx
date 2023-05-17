@@ -71,6 +71,11 @@ export default function Example({children}) {
         }
     }
 
+    const logout = () => {
+        localStorage.removeItem('token')
+        setUser(null)
+    }
+
 
     return (
         <GoogleOAuthProvider clientId="378522369727-b0q3e2r2vpdrc53luoc7pu68f8i0vq59.apps.googleusercontent.com">
@@ -240,15 +245,15 @@ export default function Example({children}) {
                                         <div className="py-1">
                                             <Menu.Item>
                                                 {({active}) => (
-                                                    <a
-                                                        href="#"
+                                                    <button
+                                                        onClick={logout}
                                                         className={classNames(
                                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
                                                         登出
-                                                    </a>
+                                                    </button>
                                                 )}
                                             </Menu.Item>
                                         </div>

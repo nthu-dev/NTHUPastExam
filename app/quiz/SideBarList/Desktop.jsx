@@ -67,7 +67,7 @@ export default function DesktopSideBar() {
                                         {({open}) => (
                                             <>
                                                 <Disclosure.Button className={classNames(
-                                                    pathname.indexOf(course_year) > -1 ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900',
+                                                    decodeURIComponent(pathname).indexOf(course) > -1 ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900',
                                                     'group flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium w-full'
                                                 )}>
                                                     <div className={"inline-flex"}><BookOpenIcon
